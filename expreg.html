@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="expreg.css" />
+    <title>Expressão Regular</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="js/regex.js"></script>
+    <div id="app">
+      <div>
+        <label for="txtRegex">Expressão:</label>
+        <input
+          type="text"
+          name="txtRegex"
+          id="txtRegex"
+          placeholder="^\d*[0-9](\.\d*[0-9])?$"
+        />
+      </div>
+      <div>
+        <label for="txtTeste1">Teste 1:</label>
+        <input type="text" name="txtTeste1" id="txtTeste1" placeholder="1234" />
+      </div>
+      <div>
+        <label for="txtTeste2">Teste 2:</label>
+        <input type="text" name="txtTeste2" id="txtTeste2" placeholder="5678" />
+      </div>
+      <a
+        href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions#uso_dos_caracteres_especiais"
+        >Caracteres Especiais</a
+      >
+    </div>
+  </body>
+</html>

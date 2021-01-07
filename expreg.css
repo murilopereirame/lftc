@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  background: #f0f0f7;
+}
+
+body,
+input {
+  font: 500 1.6rem Courier;
+}
+
+#app {
+  padding-top: 20vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 2px solid #e1e1e1;
+}
+
+input:focus {
+  border: 2px solid #439aeb;
+}
+
+a {
+  font-size: 1.3rem;
+}
