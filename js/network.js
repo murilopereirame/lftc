@@ -1,6 +1,11 @@
 let nodes = new vis.DataSet([]);
 let edges = new vis.DataSet([]);
 
+let initial = "";
+let initEdges = [];
+
+let finalNodes = [];
+
 let container = document.getElementById("mynetwork");
 
 let data = {
@@ -54,7 +59,7 @@ network.on("doubleClick", function (params) {
             }
         ]);                         
     } else if(params.edges[0] !== undefined) {
-        let label = prompt("Insira um rótulo para a ponta", "");
+        let label = prompt("Insira um rótulo para a aresta", "");
         if(label == null)
             return;
         network.body.data.edges.update([
@@ -74,13 +79,60 @@ network.on("doubleClick", function (params) {
     |-> Definição do estado final                |
     =============================================|
 */
-network.on("hold", function (params) {     
-    if(params.nodes[0] !== undefined) {
-        network.body.data.nodes.update([
-            {
-                id:params.nodes[0], 
-                shape: 'triangle'
+network.on("hold", function (params) {    
+    let label = prompt("[S]tart\n[F]inal", "");
+    if(label == null)
+        return;
+
+    if(label == 'S') {
+        if(params.nodes[0] !== undefined) {        
+            if(initial != "") {
+                network.body.data.nodes.update([
+                    {
+                        id:initial, 
+                        shape: 'elipse'
+                    }
+                ]);
             }
-        ]);                         
+
+            initial = params.nodes[0]
+            initEdges = params.edges;
+
+            network.body.data.nodes.update([
+                {
+                    id:params.nodes[0], 
+                    shape: 'triangle'
+                }
+            ]);                         
+        }
+    } else {
+        if(params.nodes[0] !== undefined) {        
+            if(finalNodes.length > 0) {
+                if(finalNodes.includes(params.nodes[0])) {
+                    network.body.data.nodes.update([
+                        {
+                            id:params.nodes[0]                            
+                        }
+                    ]);
+
+                    let index =  finalNodes.indexOf(params.nodes[0]);
+
+                    finalNodes.splice(index, 1)
+
+                    return;
+                }
+            }
+
+            finalNodes.push(params.nodes[0]);            
+
+            network.body.data.nodes.update([
+                {
+                    id:params.nodes[0],
+                    borderWidth: 3,
+                    borderWidthSelected: 3.5,
+                    backgroundColor: '#DB2C0C'       
+                }
+            ]);                         
+        }
     }
 })
