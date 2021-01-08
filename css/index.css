@@ -1,0 +1,38 @@
+#network {
+    margin-top: 10px;
+    width: 800px;
+    height: 400px;
+    border: 1px solid lightgray;
+    font-size: 0.8rem;
+}
+
+.btnPrimary {
+    border: none;
+    background-color: #698db6;
+    color: #fff;
+    height: 3em;
+    width: 6em;
+    font-size: 15px;
+    border-radius: 6px;        
+}
+
+#buttonsContainer {
+    display: flex;    
+}
+
+#buttonsContainer button {
+    margin-left: 10px;    
+}
+
+#buttonsContainer button:first-child {
+    margin-left: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container button {
+    margin-left: 10px;
+}

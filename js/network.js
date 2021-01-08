@@ -6,7 +6,7 @@ let initEdges = [];
 
 let finalNodes = [];
 
-let container = document.getElementById("mynetwork");
+let container = document.getElementById("network");
 
 let data = {
     nodes: nodes,
@@ -15,8 +15,8 @@ let data = {
 
 let options = {
     physics: {
-        enabled: false
-    },
+        enabled: true
+    },    
     edges:{
         arrows: {
             to: {
@@ -24,7 +24,22 @@ let options = {
                 scaleFactor: 1,
                 type: "arrow"
             },
+        },
+        color: {
+            inherit: false
         }
+    },
+    nodes: {
+        color: {
+            border: '#54929D',
+            background: '#78D1E1',
+        },
+        font: {
+            color: '#fff',
+            strokeWidth: 5,
+            strokeColor: '#000'
+        },        
+        size: 30
     },
     manipulation: {
         enabled: true,
@@ -33,11 +48,6 @@ let options = {
 };
 
 let network = new vis.Network(container, data, options);
-
-//Função para lidar com o click simples
-network.on('click', function(params) {
-    console.log(network.body)
-})
 
 //Handler para duplo click
 /*
@@ -90,7 +100,7 @@ network.on("hold", function (params) {
                 network.body.data.nodes.update([
                     {
                         id:initial, 
-                        shape: 'elipse'
+                        shape: 'elipse',                        
                     }
                 ]);
             }
@@ -101,7 +111,13 @@ network.on("hold", function (params) {
             network.body.data.nodes.update([
                 {
                     id:params.nodes[0], 
-                    shape: 'triangle'
+                    shape: 'dot',
+                    icon: {
+                        face: "'Ionicons'",
+                        code: "\uf109",
+                        size: 20,
+                        color: "#57169a",
+                    },
                 }
             ]);                         
         }
