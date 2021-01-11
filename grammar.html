@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/grammar.css" />
+    <title>Gramática Regular</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="js/grammar.js"></script>
+    <div id="app">
+      <form class="container">
+        <div class="ctnFlex">
+          <div class="col-nt">
+            <input
+              type="text"
+              id="start-symbol"
+              class="form-control"
+              maxlength="1"
+              value="S"
+              readonly="readonly"
+            />
+          </div>
+          <div id="arrow">→</div>
+          <div class="col-pr">
+            <input type="text" class="form-control" placeholder="ε" />
+          </div>
+        </div>
+
+      </form>
+        <div class="btn-area">
+          <button id="new-prod" class="btn" onclick="newProd()">
+            Nova linha
+          </button>
+          <button id="reset" class="btn" onclick="reset()">Resetar</button>
+        </div>
+      <div class="test-area">
+        <input name="test" id="text" cols="10" rows="7"></input>
+        <button id="test" class="btn" onclick="">Testar</button>
+      </div>
+    </div>
+  </body>
+</html>
