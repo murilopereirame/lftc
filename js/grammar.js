@@ -1,3 +1,6 @@
+let entrys = 0;
+let inputs = 1;
+
 function validateGrammar(grammar, input) {
     let auxArray = new Map();
     grammar.map((item, value) => {
@@ -48,13 +51,42 @@ function reset() {
 function newProd() {
     let prod = "<div class='ctnFlex'>"
         + "<div class='col-nt'>"
-        + "<input type='text' class='form-control' />"
+        + `<input type='text' id='key-${entrys}' class='form-control' />`
         + "</div>"
         + "<div id='arrow'>→</div>"
         + "<div class='col-pr'>"
-        + "<input type='text' class='form-control' placeholder='ε' />"
+        + `<input type='text' class='form-control' id='value-${entrys}' placeholder='ε' />`
         + "</div>"
         + "</div>"
 
+    entrys++;
     $('.container').append(prod)
+}
+
+function addEntrada() {
+    let newInput = `<input name="test" id="input-${inputs}" cols="10" rows="7"></input>`;
+    $(".input-area").append(newInput);
+    inputs++;
+}
+
+function validarEntradas() {
+    let initValue = $('#start-grammar').val();
+    let grammar = [['S', initValue]];
+
+    for(let i = 0; i < entrys; i++) {
+        let key = $(`#key-${i}`).val();
+        let value = $(`#value-${i}`).val();
+
+        grammar.push([key, value])
+    }
+
+    for(let i = 0; i < inputs; i++) {
+        let inputValue = $(`#input-${i}`).val();
+        let result = validateGrammar(grammar, inputValue);
+
+        if(result)
+            $(`#input-${i}`).css("background-color", '#67e480');
+        else
+            $(`#input-${i}`).css("background-color", '#e96379');
+    }
 }

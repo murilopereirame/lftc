@@ -78,7 +78,16 @@ div.col-pr {
   margin-top: 1.2rem;
 }
 
-#text {
+#newEntry {
+  margin-left: 10px;
+  width: 30%;
+  display: inline-block;
+  text-align: center;
+  background-color: #78d1e1;
+  font-size: 1.2rem;
+}
+
+.input-test {
   width: 80%;
   display: inline-block;
   margin: 0 1.2rem 0 0;
@@ -91,4 +100,9 @@ div.col-pr {
   text-align: center;
 
   background-color: #78d1e1;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: column;
 }
