@@ -30,7 +30,7 @@
           </div>
           <div id="arrow">→</div>
           <div class="col-pr">
-            <input type="text" class="form-control" placeholder="ε" />
+            <input type="text" class="form-control" id="start-grammar" placeholder="ε" />
           </div>
         </div>
 
@@ -41,9 +41,12 @@
           </button>
           <button id="reset" class="btn" onclick="reset()">Resetar</button>
         </div>
-      <div class="test-area">
-        <input name="test" id="text" cols="10" rows="7"></input>
-        <button id="test" class="btn" onclick="">Testar</button>
+      <div class="input-area">
+        <div class="test-area">
+          <input name="test" class="input-test" id="input-0" cols="10" rows="7"></input>
+          <button id="test" class="btn" onclick="validarEntradas()">Testar</button>
+          <button id="newEntry" class="btn" onclick="addEntrada()">Nova Entrada</button>
+        </div>
       </div>
     </div>
   </body>
