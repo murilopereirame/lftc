@@ -15,7 +15,7 @@ let data = {
 
 let options = {
     physics: {
-        enabled: true
+        enabled: false
     },    
     edges:{
         arrows: {
