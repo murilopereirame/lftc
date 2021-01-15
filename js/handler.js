@@ -19,7 +19,7 @@ function stepByStep() {
 
 async function nextStep() {
     let auxEdges = [];
-
+    
     if(!running) {
         initEdges.map((item, index) => {
             auxEdges.push(network.body.data.edges.get(item));
@@ -42,7 +42,7 @@ async function nextStep() {
         });
         
         stepNode = [initial.toString()];
-        stepEdges = edges;
+        stepEdges = auxEdges;
         running = true;
     }
 

@@ -51,8 +51,10 @@ async function validator(input, network, initial, final) {
     while(whileIndex < input.length) {            
         let auxEdges = [];
         let auxNodes = [];        
+        let notUp = false;
+        let hasMore = false;
         actualEdges.map((edge, index) => {              
-            if(edge.label == input[whileIndex]) {                   
+            if(edge.label === input[whileIndex] || edge.label === 'λ' || edge.label === 'ε') {                   
                 network.body.data.nodes.update({
                     id: edge.from,
                     color: '#67e480',
@@ -74,11 +76,18 @@ async function validator(input, network, initial, final) {
                         auxEdges.push(edgeTwo);
                 });                                                
                 auxNodes.push(edge.to);
+                if(edge.label === "λ" || edge.label === "ε")
+                    notUp = true;
+                else {
+                    notUp = false;
+                    hasMore = true;
+                }
             }
         });
         actualEdges = auxEdges;
         actualNode = auxNodes;
-        whileIndex++;
+        if((!notUp && hasMore) || (!notUp && !hasMore))
+            whileIndex++;
     }
 
     if(whileIndex == input.length) {
@@ -103,11 +112,13 @@ async function validator(input, network, initial, final) {
 async function validateStep(input, network, final) {
     let actualNode = stepNode;
     let actualEdges = stepEdges; 
-          
+    let notUp = false;
+    let hasMore = false;
+
     let auxEdges = [];
     let auxNodes = [];        
     actualEdges.map((edge, index) => {              
-        if(edge.label == input[step]) {                   
+        if(edge.label === input[step] || edge.label === 'λ' || edge.label === 'ε') {
             network.body.data.nodes.update({
                 id: edge.from,
                 color: '#67e480',
@@ -126,17 +137,25 @@ async function validateStep(input, network, final) {
             });                
             
             network.body.data.edges.map((edgeTwo, indexTwo) => {
-                if(edgeTwo.from == edge.to)
+                if(edgeTwo.from == edge.to) {
                     auxEdges.push(edgeTwo);
+                }
             });                                                
             auxNodes.push(edge.to);
+            if(edge.label === "λ" || edge.label === "ε")
+                notUp = true;
+            else {
+                notUp = false;
+                hasMore = true;
+            }
         }
     });
     stepEdges = auxEdges;
     stepNode = auxNodes;
     actualNode = auxNodes;
+
     let finish = false;
-    if(step == input.length-1) {          
+    if(step == input.length-1 && !notUp) {          
         actualNode.map(async (item, index) => {
             if(final.includes(item)) {                
                 network.body.data.nodes.update({
@@ -155,7 +174,8 @@ async function validateStep(input, network, final) {
         return finish;
     }        
     else {
-        step++;
+        if((!notUp && hasMore) || (!notUp && !hasMore))
+            step++;
         return 'continue';
     }
 }
